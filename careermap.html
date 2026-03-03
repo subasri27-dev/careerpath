@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareerPath Pro — Student Roadmap Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+--white: #ffffff;
+--bg: #f7f6f3;
+--bg2: #efede8;
+--surface: #ffffff;
+--border: #e2dfd8;
+--border2: #d0ccc4;
+--ink: #1a1814;
+--ink2: #3d3a34;
+--ink3: #6b6760;
+--muted: #9e9a94;
+--accent: #1a6b4a;
+--accent-light: #e8f5ef;
+--accent-mid: #2d8a62;
+--gold: #c8923a;
+--gold-light: #fdf3e7;
+--blue: #1e4d8c;
+--blue-light: #e8eef8;
+--red: #b83232;
+--red-light: #faeaea;
+--shadow-xs: 0 1px 4px rgba(26,24,20,0.06);
+--shadow-sm: 0 2px 12px rgba(26,24,20,0.08);
+--shadow-md: 0 8px 32px rgba(26,24,20,0.10);
+--shadow-lg: 0 20px 60px rgba(26,24,20,0.12);
+--radius-sm: 8px;
+--radius-md: 14px;
+--radius-lg: 20px;
+--radius-xl: 28px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+background: var(--bg);
+color: var(--ink);
+font-family: 'DM Sans', sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+-webkit-font-smoothing: antialiased;
+}
+/* subtle grid texture */
+body::before {
+content: '';
+position: fixed;
+inset: 0;
+background-image:
+linear-gradient(rgba(26,24,20,0.025) 1px, transparent 1px),
+linear-gradient(90deg, rgba(26,24,20,0.025) 1px, transparent 1px);
+background-size: 48px 48px;
+pointer-events: none;
+z-index: 0;
+}
+.wrapper { position: relative; z-index: 1; }
+/* ── NAV ── */
+nav {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 48px;
+height: 64px;
+background: rgba(247,246,243,0.92);
+backdrop-filter: blur(16px);
+border-bottom: 1px solid var(--border);
+position: sticky;
+top: 0;
+z-index: 100;
+}
+.nav-logo {
+font-family: 'Fraunces', serif;
+font-size: 1.2rem;
+font-weight: 700;
+color: var(--ink);
+display: flex;
+align-items: center;
+gap: 10px;
+letter-spacing: -0.3px;
+}
+.logo-mark {
+width: 32px;
+height: 32px;
+background: var(--ink);
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+font-size: 14px;
+font-weight: 700;
+letter-spacing: -0.5px;
+flex-shrink: 0;
+}
+.nav-right {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.nav-tag {
+font-size: 12px;
+font-weight: 600;
+color: var(--ink3);
+background: var(--bg2);
+border: 1px solid var(--border);
+padding: 5px 14px;
+border-radius: 100px;
+letter-spacing: 0.2px;
+}
+.nav-cta {
+font-size: 13px;
+font-weight: 600;
+color: white;
+background: var(--ink);
+border: none;
+padding: 8px 18px;
+border-radius: 8px;
+cursor: pointer;
+transition: opacity 0.15s;
+}
+.nav-cta:hover { opacity: 0.82; }
+/* ── HERO ── */
+header {
+max-width: 1100px;
+margin: 0 auto;
+padding: 80px 48px 64px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+align-items: center;
+}
+@media (max-width: 768px) {
+header { grid-template-columns: 1fr; padding: 48px 24px 40px; gap: 32px; }
+nav { padding: 0 20px; }
+}
+.hero-left {}
+.hero-eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+color: var(--accent);
+margin-bottom: 20px;
+}
+.hero-eyebrow::before {
+content: '';
+width: 24px;
+height: 2px;
+background: var(--accent);
+border-radius: 2px;
+}
+header h1 {
+font-family: 'Fraunces', serif;
+font-size: clamp(2.6rem, 5vw, 4rem);
+font-weight: 700;
+line-height: 1.1;
+color: var(--ink);
+letter-spacing: -1px;
+margin-bottom: 20px;
+}
+header h1 em {
+font-style: italic;
+font-weight: 300;
+color: var(--ink2);
+}
+header p {
+font-size: 1rem;
+color: var(--ink3);
+line-height: 1.75;
+max-width: 400px;
+margin-bottom: 32px;
+}
+.hero-stats {
+display: flex;
+gap: 32px;
+}
+.hero-stat-val {
+font-family: 'Fraunces', serif;
+font-size: 1.6rem;
+font-weight: 700;
+color: var(--ink);
+line-height: 1;
+margin-bottom: 4px;
+}
+.hero-stat-label {
+font-size: 12px;
+color: var(--muted);
+font-weight: 500;
+}
+/* hero right panel */
+.hero-right {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius-xl);
+padding: 28px;
+box-shadow: var(--shadow-md);
+animation: slideInRight 0.7s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes slideInRight {
+from { opacity: 0; transform: translateX(30px); }
+to { opacity: 1; transform: translateX(0); }
+}
+.panel-title {
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--muted);
+margin-bottom: 16px;
+padding-bottom: 12px;
+border-bottom: 1px solid var(--border);
+}
+.career-preview-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8px;
+margin-bottom: 16px;
+}
+.career-preview-item {
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 10px 12px;
+border-radius: var(--radius-sm);
+background: var(--bg);
+border: 1px solid var(--border);
+font-size: 13px;
+font-weight: 500;
+color: var(--ink2);
+}
+.career-preview-item .dot {
+width: 6px;
+height: 6px;
+border-radius: 50%;
+flex-shrink: 0;
+}
+.dot-green { background: var(--accent); }
+.dot-gold { background: var(--gold); }
+.dot-blue { background: var(--blue); }
+.dot-red { background: var(--red); }
+.preview-more {
+font-size: 12px;
+color: var(--muted);
+text-align: center;
+padding-top: 12px;
+border-top: 1px solid var(--border);
+}
+/* ── MAIN SELECTOR ── */
+.selector-section {
+max-width: 1100px;
+margin: 0 auto 64px;
+padding: 0 48px;
+}
+@media (max-width: 768px) {
+.selector-section { padding: 0 24px; }
+}
+.selector-wrap {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius-xl);
+overflow: hidden;
+box-shadow: var(--shadow-md);
+}
+.selector-header {
+padding: 28px 36px 24px;
+border-bottom: 1px solid var(--border);
+display: flex;
+align-items: center;
+gap: 14px;
+}
+.selector-header-icon {
+width: 40px;
+height: 40px;
+background: var(--bg);
+border: 1px solid var(--border);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+flex-shrink: 0;
+}
+.selector-header h2 {
+font-family: 'Fraunces', serif;
+font-size: 1.25rem;
+font-weight: 600;
+color: var(--ink);
+letter-spacing: -0.3px;
+}
+.selector-header p {
+font-size: 13px;
+color: var(--ink3);
+margin-top: 2px;
+}
+.selector-body {
+padding: 32px 36px;
+}
+.selector-row {
+display: grid;
+grid-template-columns: 280px 1fr;
+gap: 48px;
+margin-bottom: 32px;
+}
+@media (max-width: 768px) {
+.selector-row { grid-template-columns: 1fr; gap: 28px; }
+.selector-body { padding: 24px; }
+.selector-header { padding: 20px 24px; }
+}
+.group-label {
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--muted);
+margin-bottom: 14px;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.group-label::after {
+content: '';
+flex: 1;
+height: 1px;
+background: var(--border);
+}
+/* level pills — vertical */
+.level-group {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+.level-pill {
+cursor: pointer;
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 14px 18px;
+border-radius: var(--radius-md);
+border: 1.5px solid var(--border);
+background: var(--bg);
+transition: all 0.18s ease;
+user-select: none;
+}
+.level-pill:hover {
+border-color: var(--border2);
+background: var(--bg2);
+}
+.level-pill.active {
+border-color: var(--ink);
+background: var(--ink);
+color: white;
+}
+.level-pill .lp-icon {
+width: 32px;
+height: 32px;
+border-radius: 8px;
+background: var(--surface);
+border: 1px solid var(--border);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 16px;
+flex-shrink: 0;
+transition: background 0.18s, border-color 0.18s;
+}
+.level-pill.active .lp-icon {
+background: rgba(255,255,255,0.12);
+border-color: rgba(255,255,255,0.2);
+}
+.lp-text { flex: 1; }
+.lp-name {
+font-size: 14px;
+font-weight: 600;
+color: var(--ink);
+line-height: 1;
+margin-bottom: 3px;
+transition: color 0.18s;
+}
+.level-pill.active .lp-name { color: white; }
+.lp-desc {
+font-size: 11.5px;
+color: var(--ink3);
+transition: color 0.18s;
+}
+.level-pill.active .lp-desc { color: rgba(255,255,255,0.65); }
+.lp-check {
+width: 20px;
+height: 20px;
+border-radius: 50%;
+border: 1.5px solid var(--border2);
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.18s;
+flex-shrink: 0;
+}
+.level-pill.active .lp-check {
+background: rgba(255,255,255,0.2);
+border-color: rgba(255,255,255,0.4);
+color: white;
+}
+/* Interest grid */
+.interest-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 10px;
+}
+@media (max-width: 900px) {
+.interest-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+.interest-grid { grid-template-columns: 1fr 1fr; }
+}
+.interest-card {
+cursor: pointer;
+border: 1.5px solid var(--border);
+border-radius: var(--radius-md);
+padding: 16px;
+background: var(--bg);
+transition: all 0.18s ease;
+user-select: none;
+position: relative;
+overflow: hidden;
+}
+.interest-card:hover {
+border-color: var(--border2);
+background: var(--surface);
+transform: translateY(-2px);
+box-shadow: var(--shadow-sm);
+}
+.interest-card.active {
+border-color: var(--accent);
+background: var(--accent-light);
+transform: translateY(-2px);
+box-shadow: 0 4px 16px rgba(26,107,74,0.15);
+}
+.ic-icon {
+font-size: 22px;
+margin-bottom: 8px;
+display: block;
+}
+.ic-name {
+font-size: 13px;
+font-weight: 600;
+color: var(--ink);
+margin-bottom: 3px;
+line-height: 1.2;
+}
+.interest-card.active .ic-name { color: var(--accent); }
+.ic-tag {
+font-size: 10.5px;
+color: var(--muted);
+font-weight: 500;
+}
+.interest-card.active .ic-tag { color: var(--accent-mid); opacity: 0.8; }
+.ic-check {
+position: absolute;
+top: 10px;
+right: 10px;
+width: 18px;
+height: 18px;
+border-radius: 50%;
+background: var(--accent);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 10px;
+color: white;
+opacity: 0;
+transition: opacity 0.18s, transform 0.18s;
+transform: scale(0.6);
+}
+.interest-card.active .ic-check {
+opacity: 1;
+transform: scale(1);
+}
+/* selector footer */
+.selector-footer {
+padding: 24px 36px 32px;
+border-top: 1px solid var(--border);
+display: flex;
+align-items: center;
+gap: 20px;
+}
+@media (max-width: 768px) {
+.selector-footer { flex-direction: column; padding: 20px 24px 24px; }
+}
+.selection-status {
+flex: 1;
+font-size: 13px;
+color: var(--muted);
+}
+.selection-status strong { color: var(--ink); font-weight: 600; }
+.generate-btn {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 14px 32px;
+border-radius: var(--radius-md);
+border: none;
+background: var(--ink);
+color: white;
+font-family: 'DM Sans', sans-serif;
+font-size: 14px;
+font-weight: 600;
+letter-spacing: 0.2px;
+cursor: pointer;
+transition: all 0.2s ease;
+white-space: nowrap;
+position: relative;
+overflow: hidden;
+}
+.generate-btn::after {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+}
+.generate-btn:hover:not(:disabled) {
+background: var(--ink2);
+transform: translateY(-1px);
+box-shadow: var(--shadow-md);
+}
+.generate-btn:disabled {
+opacity: 0.35;
+cursor: not-allowed;
+transform: none;
+}
+.btn-icon { font-size: 16px; transition: transform 0.2s; }
+.generate-btn:hover:not(:disabled) .btn-icon { transform: translateX(3px); }
+/* ── ROADMAP OUTPUT ── */
+#roadmap-output {
+max-width: 1100px;
+margin: 0 auto;
+padding: 0 48px 100px;
+display: none;
+animation: fadeUp 0.5s cubic-bezier(.16,1,.3,1) forwards;
+}
+@media (max-width: 768px) {
+#roadmap-output { padding: 0 24px 80px; }
+}
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(24px); }
+to { opacity: 1; transform: translateY(0); }
+}
+/* roadmap top bar */
+.roadmap-topbar {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+gap: 20px;
+padding: 48px 0 40px;
+border-bottom: 1px solid var(--border);
+margin-bottom: 48px;
+flex-wrap: wrap;
+}
+.rm-breadcrumb {
+font-size: 12px;
+color: var(--muted);
+font-weight: 500;
+margin-bottom: 10px;
+letter-spacing: 0.3px;
+}
+.rm-breadcrumb span {
+color: var(--accent);
+font-weight: 600;
+}
+.rm-title {
+font-family: 'Fraunces', serif;
+font-size: clamp(1.8rem, 4vw, 2.8rem);
+font-weight: 700;
+color: var(--ink);
+letter-spacing: -0.8px;
+line-height: 1.1;
+}
+.rm-sub {
+font-size: 14px;
+color: var(--ink3);
+margin-top: 8px;
+line-height: 1.6;
+}
+.rm-badges {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+padding-top: 4px;
+}
+.rm-badge {
+font-size: 12px;
+font-weight: 600;
+padding: 6px 14px;
+border-radius: 100px;
+border: 1.5px solid;
+white-space: nowrap;
+}
+.rm-badge.green { background: var(--accent-light); border-color: rgba(26,107,74,0.3); color: var(--accent); }
+.rm-badge.gold { background: var(--gold-light); border-color: rgba(200,146,58,0.3); color: var(--gold); }
+.rm-badge.blue { background: var(--blue-light); border-color: rgba(30,77,140,0.3); color: var(--blue); }
+/* stats */
+.stats-row {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+margin-bottom: 56px;
+}
+@media (max-width: 600px) { .stats-row { grid-template-columns: 1fr; } }
+.stat-card {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius-lg);
+padding: 28px 24px;
+transition: box-shadow 0.2s, transform 0.2s;
+position: relative;
+overflow: hidden;
+}
+.stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.stat-card-accent {
+position: absolute;
+left: 0; top: 0; bottom: 0;
+width: 3px;
+border-radius: 20px 0 0 20px;
+}
+.stat-card.sc-green .stat-card-accent { background: var(--accent); }
+.stat-card.sc-gold .stat-card-accent { background: var(--gold); }
+.stat-card.sc-blue .stat-card-accent { background: var(--blue); }
+.stat-label {
+font-size: 10.5px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--muted);
+margin-bottom: 10px;
+}
+.stat-value {
+font-family: 'Fraunces', serif;
+font-size: 1.5rem;
+font-weight: 700;
+color: var(--ink);
+letter-spacing: -0.4px;
+}
+.stat-card.sc-green .stat-value { color: var(--accent); }
+.stat-card.sc-gold .stat-value { color: var(--gold); }
+.stat-card.sc-blue .stat-value { color: var(--blue); }
+/* section */
+.section { margin-bottom: 56px; }
+.section-header {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 24px;
+}
+.section-number {
+width: 28px;
+height: 28px;
+border-radius: 8px;
+background: var(--ink);
+color: white;
+font-size: 12px;
+font-weight: 700;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+.section-title {
+font-family: 'Fraunces', serif;
+font-size: 1.1rem;
+font-weight: 600;
+color: var(--ink);
+letter-spacing: -0.3px;
+}
+.section-line {
+flex: 1;
+height: 1px;
+background: var(--border);
+}
+/* steps */
+.steps-list {
+display: flex;
+flex-direction: column;
+gap: 0;
+}
+.step-row {
+display: grid;
+grid-template-columns: 52px 1fr;
+gap: 0;
+animation: stepIn 0.4s ease backwards;
+}
+.step-row:nth-child(1) { animation-delay: 0.06s; }
+.step-row:nth-child(2) { animation-delay: 0.12s; }
+.step-row:nth-child(3) { animation-delay: 0.18s; }
+.step-row:nth-child(4) { animation-delay: 0.24s; }
+.step-row:nth-child(5) { animation-delay: 0.30s; }
+.step-row:nth-child(6) { animation-delay: 0.36s; }
+@keyframes stepIn {
+from { opacity: 0; transform: translateY(12px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.step-aside {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding-top: 4px;
+}
+.step-num {
+width: 36px;
+height: 36px;
+border-radius: 10px;
+background: var(--surface);
+border: 1.5px solid var(--border2);
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: 'Fraunces', serif;
+font-weight: 700;
+font-size: 15px;
+color: var(--ink2);
+flex-shrink: 0;
+position: relative;
+z-index: 1;
+transition: all 0.2s;
+}
+.step-row:hover .step-num {
+background: var(--ink);
+border-color: var(--ink);
+color: white;
+}
+.step-line {
+width: 1.5px;
+flex: 1;
+background: var(--border);
+margin: 6px 0;
+min-height: 20px;
+}
+.step-row:last-child .step-line { display: none; }
+.step-body {
+padding: 0 0 28px 20px;
+}
+.step-inner {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius-md);
+padding: 18px 22px;
+transition: all 0.2s ease;
+}
+.step-row:hover .step-inner {
+border-color: var(--border2);
+box-shadow: var(--shadow-sm);
+}
+.step-title {
+font-size: 14.5px;
+font-weight: 600;
+color: var(--ink);
+margin-bottom: 6px;
+}
+.step-desc {
+font-size: 13.5px;
+color: var(--ink3);
+line-height: 1.65;
+}
+.step-meta {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-top: 12px;
+}
+.step-dur {
+display: inline-flex;
+align-items: center;
+gap: 5px;
+font-size: 11.5px;
+font-weight: 600;
+color: var(--accent);
+background: var(--accent-light);
+padding: 4px 12px;
+border-radius: 100px;
+}
+/* skills */
+.skills-container {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius-lg);
+padding: 28px;
+box-shadow: var(--shadow-xs);
+}
+.skills-category {
+margin-bottom: 20px;
+}
+.skills-category:last-child { margin-bottom: 0; }
+.skills-cat-label {
+font-size: 10.5px;
+font-weight: 700;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--muted);
+margin-bottom: 10px;
+}
+.skills-tags {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+}
+.skill-tag {
+padding: 6px 14px;
+border-radius: 6px;
+font-size: 12.5px;
+font-weight: 500;
+border: 1px solid;
+animation: popIn 0.3s ease backwards;
+transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.skill-tag:hover { transform: translateY(-1px); box-shadow: var(--shadow-xs); }
+@keyframes popIn {
+from { opacity: 0; transform: scale(0.88); }
+to { opacity: 1; transform: scale(1); }
+}
+.skill-tag.tech { background: var(--blue-light); border-color: rgba(30,77,140,0.25); color: var(--blue); }
+.skill-tag.soft { background: var(--red-light); border-color: rgba(184,50,50,0.25); color: var(--red); }
+.skill-tag.core { background: var(--accent-light);border-color: rgba(26,107,74,0.25); color: var(--accent); }
+.skill-tag.tool { background: var(--gold-light); border-color: rgba(200,146,58,0.25); color: var(--gold); }
+/* salary */
+.salary-wrap {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius-lg);
+overflow: hidden;
+box-shadow: var(--shadow-xs);
+}
+.salary-levels {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 500px) { .salary-levels { grid-template-columns: 1fr; } }
+.salary-level {
+padding: 32px 28px;
+border-right: 1px solid var(--border);
+text-align: center;
+transition: background 0.2s;
+}
+.salary-level:hover { background: var(--bg); }
+.salary-level:last-child { border-right: none; }
+.sal-icon { font-size: 1.8rem; margin-bottom: 12px; }
+.sal-tier {
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+color: var(--muted);
+margin-bottom: 10px;
+}
+.sal-amount {
+font-family: 'Fraunces', serif;
+font-size: 1.4rem;
+font-weight: 700;
+color: var(--ink);
+letter-spacing: -0.4px;
+}
+.sal-yoe { font-size: 12px; color: var(--muted); margin-top: 6px; }
+/* resources */
+.resources-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 14px;
+}
+.resource-card {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius-md);
+padding: 20px;
+display: flex;
+align-items: flex-start;
+gap: 14px;
+text-decoration: none;
+transition: all 0.2s ease;
+animation: popIn 0.4s ease backwards;
+box-shadow: var(--shadow-xs);
+}
+.resource-card:hover {
+border-color: var(--border2);
+transform: translateY(-3px);
+box-shadow: var(--shadow-md);
+}
+.res-icon {
+width: 44px;
+height: 44px;
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 20px;
+flex-shrink: 0;
+border: 1px solid var(--border);
+}
+.res-info h4 {
+font-size: 13.5px;
+font-weight: 600;
+color: var(--ink);
+margin-bottom: 4px;
+line-height: 1.3;
+}
+.res-info p { font-size: 12px; color: var(--ink3); line-height: 1.5; }
+.res-badge {
+display: inline-block;
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+margin-top: 8px;
+padding: 3px 10px;
+border-radius: 100px;
+border: 1px solid;
+}
+.res-badge.free { background: var(--accent-light); border-color: rgba(26,107,74,0.25); color: var(--accent); }
+.res-badge.paid { background: var(--gold-light); border-color: rgba(200,146,58,0.25); color: var(--gold); }
+.res-badge.book { background: var(--blue-light); border-color: rgba(30,77,140,0.25); color: var(--blue); }
+.res-badge.freemium{ background: var(--bg2); border-color: var(--border2); color: var(--ink3); }
+/* divider */
+.divider {
+height: 1px;
+background: var(--border);
+margin: 48px 0;
+}
+/* back btn */
+#back-btn {
+display: flex;
+align-items: center;
+gap: 8px;
+margin: 0 auto;
+background: var(--surface);
+border: 1.5px solid var(--border2);
+color: var(--ink2);
+font-family: 'DM Sans', sans-serif;
+font-size: 13.5px;
+font-weight: 600;
+padding: 12px 28px;
+border-radius: var(--radius-md);
+cursor: pointer;
+transition: all 0.2s ease;
+}
+#back-btn:hover {
+border-color: var(--ink);
+background: var(--ink);
+color: white;
+transform: translateY(-1px);
+box-shadow: var(--shadow-md);
+}
+/* footer */
+footer {
+background: var(--ink);
+color: rgba(255,255,255,0.5);
+text-align: center;
+padding: 28px 20px;
+font-size: 13px;
+}
+footer strong { color: rgba(255,255,255,0.9); }
+</style>
+</head>
+<body>
+<div class="wrapper">
+<!-- NAV -->
+<nav>
+<div class="nav-logo">
+<div class="logo-mark">CP</div>
+CareerPath
+</div>
+<div class="nav-right">
+<div class="nav-tag">For Students 🇮🇳</div>
+<button class="nav-cta" onclick="document.querySelector('.selector-section').scrollIntoView({behavior:'smooth'})">Get Started</button>
+</div>
+</nav>
+<!-- HERO -->
+<header>
+<div class="hero-left">
+<div class="hero-eyebrow">Student Roadmap Planner</div>
+<h1>Find Your<br><em>Career Path.</em><br>Start Today.</h1>
+<p>Personalized, step-by-step career roadmaps for every student — from 10th grade to placement and beyond.</p>
+<div class="hero-stats">
+<div>
+<div class="hero-stat-val">12+</div>
+<div class="hero-stat-label">Career Tracks</div>
+</div>
+<div>
+<div class="hero-stat-val">3</div>
+<div class="hero-stat-label">Education Levels</div>
+</div>
+<div>
+<div class="hero-stat-val">Free</div>
+<div class="hero-stat-label">Always</div>
+</div>
+</div>
+</div>
+<div class="hero-right">
+<div class="panel-title">Available Career Tracks</div>
+<div class="career-preview-grid">
+<div class="career-preview-item"><span class="dot dot-green"></span>AI / ML</div>
+<div class="career-preview-item"><span class="dot dot-blue"></span>Web Dev</div>
+<div class="career-preview-item"><span class="dot dot-gold"></span>Data Science</div>
+<div class="career-preview-item"><span class="dot dot-red"></span>Cybersecurity</div>
+<div class="career-preview-item"><span class="dot dot-green"></span>Cloud & DevOps</div>
+<div class="career-preview-item"><span class="dot dot-blue"></span>UI/UX Design</div>
+<div class="career-preview-item"><span class="dot dot-gold"></span>Finance / CA</div>
+<div class="career-preview-item"><span class="dot dot-red"></span>Govt Jobs</div>
+</div>
+<div class="preview-more">+ Game Dev, Digital Marketing, Medical, Startup & more</div>
+</div>
+</header>
+<!-- SELECTOR -->
+<div class="selector-section">
+<div class="selector-wrap">
+<div class="selector-header">
+<div class="selector-header-icon"> </div>
+<div>
+<h2>Build Your Roadmap</h2>
+<p>Select your education level and career interest to generate your personalized plan</p>
+</div>
+</div>
+<div class="selector-body">
+<div class="selector-row">
+<!-- LEVEL -->
+<div>
+<div class="group-label">Education Level</div>
+<div class="level-group" id="level-group">
+<div class="level-pill" onclick="selectLevel(this,'10th')">
+<div class="lp-icon"> </div>
+<div class="lp-text">
+<div class="lp-name">10th Grade</div>
+<div class="lp-desc">Just starting out</div>
+</div>
+<div class="lp-check">✓</div>
+</div>
+<div class="level-pill" onclick="selectLevel(this,'12th')">
+<div class="lp-icon"> </div>
+<div class="lp-text">
+<div class="lp-name">12th Grade</div>
+<div class="lp-desc">Choosing college path</div>
+</div>
+<div class="lp-check">✓</div>
+</div>
+<div class="level-pill" onclick="selectLevel(this,'btech')">
+<div class="lp-icon"> </div>
+<div class="lp-text">
+<div class="lp-name">B.Tech / Graduate</div>
+<div class="lp-desc">Specializing & placing</div>
+</div>
+<div class="lp-check">✓</div>
+</div>
+</div>
+</div>
+<!-- INTEREST -->
+<div>
+<div class="group-label">Career Interest</div>
+<div class="interest-grid" id="interest-group">
+<div class="interest-card" onclick="selectInterest(this,'ai')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">AI / Machine Learning</div>
+<div class="ic-tag">Tech · High Demand</div>
+</div>
+<div class="interest-card" onclick="selectInterest(this,'webdev')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">Web Development</div>
+<div class="ic-tag">Tech · Very High Demand</div>
+</div>
+<div class="interest-card" onclick="selectInterest(this,'data')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">Data Science</div>
+<div class="ic-tag">Tech · Explosive Growth</div>
+</div>
+<div class="interest-card" onclick="selectInterest(this,'cyber')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">Cybersecurity</div>
+<div class="ic-tag">Tech · Critical Need</div>
+</div>
+<div class="interest-card" onclick="selectInterest(this,'cloud')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">Cloud & DevOps</div>
+<div class="ic-tag">Tech · High Salary</div>
+</div>
+<div class="interest-card" onclick="selectInterest(this,'design')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">UI/UX Design</div>
+<div class="ic-tag">Creative · Growing Fast</div>
+</div>
+<div class="interest-card" onclick="selectInterest(this,'gamedev')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">Game Development</div>
+<div class="ic-tag">Tech + Creative</div>
+</div>
+<div class="interest-card" onclick="selectInterest(this,'marketing')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">Digital Marketing</div>
+<div class="ic-tag">Business · Freelance</div>
+</div>
+<div class="interest-card" onclick="selectInterest(this,'finance')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">Finance / CA</div>
+<div class="ic-tag">Commerce · Prestigious</div>
+</div>
+<div class="interest-card" onclick="selectInterest(this,'medical')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">Medical / Healthcare</div>
+<div class="ic-tag">Science · Respected</div>
+</div>
+<div class="interest-card" onclick="selectInterest(this,'govt')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">Government / UPSC</div>
+<div class="ic-tag">Civil · Stable Career</div>
+</div>
+<div class="interest-card" onclick="selectInterest(this,'startup')">
+<div class="ic-check">✓</div>
+<span class="ic-icon"> </span>
+<div class="ic-name">Startup / Entrepreneur</div>
+<div class="ic-tag">Business · High Reward</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="selector-footer">
+<div class="selection-status" id="status-text">Select your education level and a career track to continue</div>
+<button class="generate-btn" id="generate-btn" onclick="generateRoadmap()" disabled>
+Generate Roadmap <span class="btn-icon">→</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ROADMAP OUTPUT -->
+<div id="roadmap-output">
+<div class="roadmap-topbar">
+<div>
+<div class="rm-breadcrumb">CareerPath › <span id="rm-breadcrumb-text"></span></div>
+<div class="rm-title" id="rm-title"></div>
+<div class="rm-sub" id="rm-sub"></div>
+</div>
+<div class="rm-badges">
+<div class="rm-badge green" id="rm-badge-dur"></div>
+<div class="rm-badge gold" id="rm-badge-sal"></div>
+<div class="rm-badge blue" id="rm-badge-dem"></div>
+</div>
+</div>
+<!-- STATS -->
+<div class="stats-row">
+<div class="stat-card sc-green">
+<div class="stat-card-accent"></div>
+<div class="stat-label">Total Duration</div>
+<div class="stat-value" id="stat-duration"></div>
+</div>
+<div class="stat-card sc-gold">
+<div class="stat-card-accent"></div>
+<div class="stat-label">Entry-Level Salary</div>
+<div class="stat-value" id="stat-salary"></div>
+</div>
+<div class="stat-card sc-blue">
+<div class="stat-card-accent"></div>
+<div class="stat-label">Market Demand</div>
+<div class="stat-value" id="stat-demand"></div>
+</div>
+</div>
+<!-- STEPS -->
+<div class="section">
+<div class="section-header">
+<div class="section-number">01</div>
+<div class="section-title">Step-by-Step Roadmap</div>
+<div class="section-line"></div>
+</div>
+<div class="steps-list" id="steps-container"></div>
+</div>
+<div class="divider"></div>
+<!-- SKILLS -->
+<div class="section">
+<div class="section-header">
+<div class="section-number">02</div>
+<div class="section-title">Skills to Master</div>
+<div class="section-line"></div>
+</div>
+<div class="skills-container" id="skills-container"></div>
+</div>
+<div class="divider"></div>
+<!-- SALARY -->
+<div class="section">
+<div class="section-header">
+<div class="section-number">03</div>
+<div class="section-title">Salary Progression</div>
+<div class="section-line"></div>
+</div>
+<div class="salary-wrap">
+<div class="salary-levels" id="salary-levels"></div>
+</div>
+</div>
+<div class="divider"></div>
+<!-- RESOURCES -->
+<div class="section">
+<div class="section-header">
+<div class="section-number">04</div>
+<div class="section-title">Learning Resources</div>
+<div class="section-line"></div>
+</div>
+<div class="resources-grid" id="resources-grid"></div>
+</div>
+<div class="divider"></div>
+<button id="back-btn" onclick="scrollBack()">← Change Selection</button>
+</div>
+</div>
+<footer>
+<strong>CareerPath Pro</strong> — Free career guidance for every Indian student · 2025
+</footer>
+<script>
+const selections = { level: null, interest: null };
+function selectLevel(el, val) {
+document.querySelectorAll('.level-pill').forEach(p => p.classList.remove('active'));
+el.classList.add('active');
+selections.level = val;
+updateStatus();
+}
+function selectInterest(el, val) {
+document.querySelectorAll('.interest-card').forEach(c => c.classList.remove('active'));
+el.classList.add('active');
+selections.interest = val;
+updateStatus();
+}
+function updateStatus() {
+const levelLabels = {'10th':'10th Grade','12th':'12th Grade','btech':'B.Tech / Graduate'};
+const interestLabels = {
+'ai':'AI / ML','webdev':'Web Development','data':'Data Science','cyber':'Cybersecurity',
+'cloud':'Cloud & DevOps','design':'UI/UX Design','gamedev':'Game Development',
+'marketing':'Digital Marketing','finance':'Finance / CA','medical':'Medical / Healthcare',
+'govt':'Government / UPSC','startup':'Startup / Entrepreneur'
+};
+const btn = document.getElementById('generate-btn');
+const status = document.getElementById('status-text');
+if (selections.level && selections.interest) {
+btn.disabled = false;
+status.innerHTML = `<strong>${levelLabels[selections.level]}</strong> pursuing <strong>${interestLabels[selections.interest]}</strong> — ready to generate!`;
+} else if (selections.level) {
+btn.disabled = true;
+status.innerHTML = `<strong>${levelLabels[selections.level]}</strong> selected — now pick a career track`;
+} else if (selections.interest) {
+btn.disabled = true;
+status.innerHTML = `<strong>${interestLabels[selections.interest]}</strong> selected — now pick your education level`;
+} else {
+btn.disabled = true;
+status.innerHTML = 'Select your education level and a career track to continue';
+}
+}
+// =========== DATA ===========
+const DB = {
+ai: {
+title: 'AI / Machine Learning',
+sub: 'Build intelligent systems and shape the future of technology.',
+dur: '4–5 Years', sal: '₹6–12 LPA', dem: ' Very High',
+steps: [
+{n:1, t:'Master Mathematics & Statistics', d:'Linear Algebra, Probability, Calculus. The backbone of every ML algorithm. Prioritise in 11th–12th.', dur:'Class 11–12'},
+{n:2, t:'Learn Python Thoroughly', d:'Variables, OOP, libraries. Python is the universal language of AI — invest early.', dur:'3–4 months'},
+{n:3, t:'Enroll in CS / AI Degree', d:'B.Tech CS, B.Sc Data Science. Target NITs, IIITs, BITS, SRM via JEE/CUET.', dur:'4 Years'},
+{n:4, t:'ML Fundamentals with Scikit-learn', d:'Supervised & unsupervised learning, regression, classification, cross-validation.', dur:'6 months'},
+{n:5, t:'Deep Learning — TensorFlow / PyTorch', d:'CNNs, RNNs, Transformers. Build image classifiers and sequence models from scratch.', dur:'6 months'},
+{n:6, t:'Build & Publish Projects', d:'End-to-end AI products on GitHub. Compete on Kaggle. Build a strong portfolio.', dur:'Ongoing'},
+],
+skills: {
+tech: ['Python','NumPy / Pandas','Scikit-learn','TensorFlow / PyTorch','SQL'],
+core: ['Linear Algebra','Statistics & Probability','Data Analysis','Model Evaluation'],
+tool: ['Jupyter Notebook','Git / GitHub','Google Colab','Hugging Face'],
+soft: ['Problem Solving','Research Mindset','Curiosity'],
+},
+salary: [{t:'Entry',i:' ',a:'₹4–8 LPA',y:'0–2 yrs'},{t:'Mid',i:' ',a:'₹12–24 LPA',y:'3–5 yrs'},{t:'Senior',i:' ',a:'₹28–60 LPA',y:'6+ yrs'}],
+resources: [
+{i:' ',bg:'#eef2fb',n:'Andrew Ng – ML Course',d:'Coursera – gold standard for ML fundamentals',b:'paid',u:'https://coursera.org'},
+{i:' ',bg:'#eaf6f1',n:'Kaggle Learn',d:'Free micro-courses with real datasets',b:'free',u:'https://kaggle.com/learn'},
+{i:' ',bg:'#fdf3e7',n:'3Blue1Brown (YouTube)',d:'Neural networks explained visually',b:'free',u:'https://youtube.com'},
+{i:' ',bg:'#f7eef8',n:'fast.ai',d:'Practical deep learning for coders',b:'free',u:'https://fast.ai'},
+{i:' ',bg:'#faeaea',n:'Hugging Face',d:'State-of-the-art NLP models & tools',b:'free',u:'https://huggingface.co'},
+{i:' ',bg:'#eef2fb',n:'Python.org Docs',d:'Official Python documentation & tutorials',b:'free',u:'https://python.org'},
+]
+},
+webdev: {
+title: 'Web Development',
+sub: 'Build websites, web apps, and products that millions use.',
+dur: '2–4 Years', sal: '₹4–8 LPA', dem: ' Very High',
+steps: [
+{n:1, t:'HTML, CSS, JavaScript Basics', d:'Build and style your first webpage. Master DOM manipulation, flexbox, and responsive design.', dur:'1–2 months'},
+{n:2, t:'JavaScript Deep Dive', d:'ES6+, async/await, Fetch API, modules. JS is the engine of the modern web.', dur:'3 months'},
+{n:3, t:'React.js Frontend Framework', d:'Components, hooks, state, React Router. Most in-demand frontend skill in India.', dur:'3–4 months'},
+{n:4, t:'Backend — Node.js + Express', d:'REST APIs, authentication, JWT, middleware. Build your first full-stack app.', dur:'3 months'},
+{n:5, t:'Databases — MongoDB & SQL', d:'CRUD operations, relationships, indexing. Know both NoSQL and SQL.', dur:'2 months'},
+{n:6, t:'Deploy & Build Portfolio', d:'Host on Vercel/Netlify/Railway. Build 3 real projects and go live with a portfolio site.', dur:'Ongoing'},
+],
+skills: {
+tech: ['HTML / CSS','JavaScript (ES6+)','React.js','Node.js + Express','REST APIs'],
+core: ['Responsive Design','Web Performance','Accessibility','Version Control'],
+tool: ['Git / GitHub','MongoDB / MySQL','Figma','VS Code','Docker basics'],
+soft: ['Creativity','Attention to Detail','Self-learning'],
+},
+salary: [{t:'Entry',i:' ',a:'₹3–6 LPA',y:'0–2 yrs'},{t:'Mid',i:' ',a:'₹8–18 LPA',y:'3–5 yrs'},{t:'Senior',i:' ',a:'₹20–40 LPA',y:'6+ yrs'}],
+resources: [
+{i:' ',bg:'#eaf6f1',n:'freeCodeCamp',d:'Full-stack curriculum with free certificates',b:'free',u:'https://freecodecamp.org'},
+{i:' ',bg:'#eef2fb',n:'The Odin Project',d:'Comprehensive open-source web dev path',b:'free',u:'https://theodinproject.com'},
+{i:' ',bg:'#fdf3e7',n:'React Official Docs',d:'Learn React from the source',b:'free',u:'https://react.dev'},
+{i:' ',bg:'#faeaea',n:'Traversy Media (YouTube)',d:'Best practical web dev tutorials',b:'free',u:'https://youtube.com'},
+{i:' ',bg:'#f7eef8',n:'Udemy Web Dev Bootcamp',d:'Angela Yu\'s top-rated bootcamp',b:'paid',u:'https://udemy.com'},
+{i:' ',bg:'#eaf6f1',n:'MDN Web Docs',d:'Mozilla\'s complete web reference',b:'free',u:'https://developer.mozilla.org'},
+]
+},
+data: {
+title: 'Data Science',
+sub: 'Turn raw data into decisions, products, and insights.',
+dur: '3–5 Years', sal: '₹6–10 LPA', dem: ' Explosive',
+steps: [
+{n:1, t:'Statistics & Math Foundation', d:'Probability, hypothesis testing, distributions. The foundation without which ML models are black boxes.', dur:'Class 11–12 / 3 months'},
+{n:2, t:'Python + Excel Essentials', d:'Pandas, NumPy for data wrangling. Excel for quick dashboarding and business use cases.', dur:'3 months'},
+{n:3, t:'Data Visualization', d:'Matplotlib, Seaborn, Plotly. Communicate insights through charts that tell a story.', dur:'2 months'},
+{n:4, t:'SQL & Database Querying', d:'SELECT, JOINs, window functions, CTEs. Every data role needs strong SQL. Practice on LeetCode.', dur:'2 months'},
+{n:5, t:'Machine Learning Pipeline', d:'Sklearn, feature engineering, model selection, evaluation. Build end-to-end projects.', dur:'4 months'},
+{n:6, t:'BI Tools & Internships', d:'Power BI or Tableau dashboards. Apply for data analyst internships and case competitions.', dur:'Ongoing'},
+],
+skills: {
+tech: ['Python','SQL','Pandas / NumPy','Scikit-learn','Matplotlib / Seaborn'],
+core: ['Statistics','Data Cleaning','Business Acumen','Storytelling with Data'],
+tool: ['Tableau / Power BI','Jupyter Notebook','Excel','BigQuery'],
+soft: ['Analytical Thinking','Communication','Curiosity'],
+},
+salary: [{t:'Entry',i:' ',a:'₹5–9 LPA',y:'0–2 yrs'},{t:'Mid',i:' ',a:'₹14–25 LPA',y:'3–5 yrs'},{t:'Senior',i:' ',a:'₹28–60 LPA',y:'6+ yrs'}],
+resources: [
+{i:' ',bg:'#eef2fb',n:'Kaggle Learn',d:'Free DS micro-courses with real datasets',b:'free',u:'https://kaggle.com/learn'},
+{i:' ',bg:'#eaf6f1',n:'Google Data Analytics',d:'Professional Coursera certificate',b:'paid',u:'https://coursera.org'},
+{i:' ',bg:'#fdf3e7',n:'StatQuest (YouTube)',d:'Statistics & ML explained brilliantly',b:'free',u:'https://youtube.com'},
+{i:' ',bg:'#faeaea',n:'SQLZoo',d:'Interactive SQL learning platform',b:'free',u:'https://sqlzoo.net'},
+{i:' ',bg:'#f7eef8',n:'Tableau Public',d:'Free data viz tool & community',b:'free',u:'https://public.tableau.com'},
+{i:' ',bg:'#eaf6f1',n:'Towards Data Science',d:'Top Medium publication for DS articles',b:'free',u:'https://towardsdatascience.com'},
+]
+},
+cyber: {
+title: 'Cybersecurity',
+sub: 'Defend systems, hunt threats, and protect the digital world.',
+dur: '4–5 Years', sal: '₹6–10 LPA', dem: ' Critical Need',
+steps: [
+{n:1, t:'CS & Networking Fundamentals', d:'TCP/IP, DNS, HTTP, OSI model. The internet is your battlefield — understand how it works first.', dur:'Class 11–12 / 3 months'},
+{n:2, t:'Linux & Scripting', d:'Master Linux CLI, Bash, and Python scripting. 90% of cybersecurity tools run on Linux.', dur:'3 months'},
+{n:3, t:'Web Application Security', d:'OWASP Top 10, SQL injection, XSS, CSRF. Practice on DVWA and PortSwigger Web Academy.', dur:'3 months'},
+{n:4, t:'Ethical Hacking Practice', d:'TryHackMe and HackTheBox labs. Complete Jr Penetration Tester path and earn badges.', dur:'6 months'},
+{n:5, t:'Earn a Core Certification', d:'CompTIA Security+ (globally recognised) or CEH (popular in India). Study 2–3 months, clear exam.', dur:'3 months'},
+{n:6, t:'Specialize & Join Bug Bounty', d:'SOC Analyst, Pen Tester, or Cloud Security. Earn real money on HackerOne/Bugcrowd.', dur:'Ongoing'},
+],
+skills: {
+tech: ['Networking / TCP-IP','Linux','Python Scripting','Penetration Testing','Web App Security'],
+core: ['Cryptography','Threat Modelling','Risk Assessment','Incident Response'],
+tool: ['Kali Linux','Wireshark','Metasploit','Burp Suite','Nmap'],
+soft: ['Analytical Thinking','Ethics & Integrity','Attention to Detail'],
+},
+salary: [{t:'Entry',i:' ',a:'₹4–8 LPA',y:'0–2 yrs'},{t:'Mid',i:' ',a:'₹12–22 LPA',y:'3–5 yrs'},{t:'Senior',i:' ',a:'₹24–50 LPA',y:'6+ yrs'}],
+resources: [
+{i:' ',bg:'#eef2fb',n:'TryHackMe',d:'Guided cybersecurity labs for beginners',b:'freemium',u:'https://tryhackme.com'},
+{i:' ',bg:'#faeaea',n:'HackTheBox',d:'Advanced CTF & real-world challenges',b:'freemium',u:'https://hackthebox.com'},
+{i:' ',bg:'#eaf6f1',n:'PortSwigger Web Academy',d:'Free web security training by Burp Suite makers',b:'free',u:'https://portswigger.net/web-security'},
+{i:' ',bg:'#fdf3e7',n:'NetworkChuck (YouTube)',d:'Fun cybersecurity & networking content',b:'free',u:'https://youtube.com'},
+{i:' ',bg:'#f7eef8',n:'OWASP Foundation',d:'Free web application security resources',b:'free',u:'https://owasp.org'},
+{i:' ',bg:'#eaf6f1',n:'CompTIA Security+',d:'Industry-recognised entry-level cert',b:'paid',u:'https://comptia.org'},
+]
+},
+cloud: {
+title: 'Cloud Computing & DevOps',
+sub: 'Build, deploy, and scale infrastructure that powers the internet.',
+dur: '2–4 Years', sal: '₹7–12 LPA', dem: ' Very High',
+steps: [
+{n:1, t:'Linux & Networking Basics', d:'Shell commands, file system, networking. The OS-level foundation for everything in DevOps.', dur:'2 months'},
+{n:2, t:'Learn a Programming Language', d:'Python or Go. Scripting and automation are core DevOps skills.', dur:'3 months'},
+{n:3, t:'Master Docker & Containers', d:'Containerize apps, write Dockerfiles, manage images. Docker is the entry point to modern DevOps.', dur:'2 months'},
+{n:4, t:'Kubernetes & Orchestration', d:'Deploy, scale, and manage containerised workloads. The most sought-after DevOps skill.', dur:'3 months'},
+{n:5, t:'Cloud Platform — AWS / Azure / GCP', d:'Learn one cloud deeply. EC2, S3, IAM, VPC, Lambda. Target AWS Solutions Architect Associate cert.', dur:'4 months'},
+{n:6, t:'CI/CD & Infrastructure as Code', d:'GitHub Actions, Jenkins, Terraform. Automate everything from test to production.', dur:'3 months'},
+],
+skills: {
+tech: ['Linux / Shell Scripting','Docker','Kubernetes','AWS / Azure / GCP','Terraform'],
+core: ['CI/CD Pipelines','Infrastructure as Code','Site Reliability','Security Best Practices'],
+tool: ['Git / GitHub','Jenkins','Ansible','Prometheus / Grafana','Helm'],
+soft: ['Systems Thinking','Problem Solving','Collaboration'],
+},
+salary: [{t:'Entry',i:' ',a:'₹5–10 LPA',y:'0–2 yrs'},{t:'Mid',i:' ',a:'₹14–28 LPA',y:'3–5 yrs'},{t:'Senior',i:' ',a:'₹30–60 LPA',y:'6+ yrs'}],
+resources: [
+{i:' ',bg:'#eef2fb',n:'AWS Free Tier',d:'Learn AWS on real infrastructure for free',b:'free',u:'https://aws.amazon.com/free'},
+{i:' ',bg:'#eaf6f1',n:'Docker Official Docs',d:'Master Docker from the official source',b:'free',u:'https://docs.docker.com'},
+{i:' ',bg:'#fdf3e7',n:'Kubernetes Docs',d:'Official K8s tutorials and references',b:'free',u:'https://kubernetes.io/docs'},
+{i:' ',bg:'#faeaea',n:'TechWorld with Nana (YT)',d:'Best DevOps tutorials on YouTube',b:'free',u:'https://youtube.com'},
+{i:' ',bg:'#f7eef8',n:'ACloudGuru / KodeKloud',d:'Top cloud & DevOps training platforms',b:'paid',u:'https://acloudguru.com'},
+{i:' ',bg:'#eaf6f1',n:'The DevOps Handbook',d:'Essential reading for DevOps philosophy',b:'book',u:'https://amazon.in'},
+]
+},
+design: {
+title: 'UI/UX Design',
+sub: 'Create products people love through research, systems, and craft.',
+dur: '2–3 Years', sal: '₹4–8 LPA', dem: ' Growing Fast',
+steps: [
+{n:1, t:'Design Fundamentals', d:'Typography, color theory, layout, visual hierarchy. Study great designs daily — Dribbble, Behance.', dur:'2 months'},
+{n:2, t:'Learn Figma (Industry Standard)', d:'Components, auto-layout, prototyping, dev handoff. Figma is the professional tool. Learn it deeply.', dur:'2–3 months'},
+{n:3, t:'UX Research & User Thinking', d:'User interviews, personas, journey maps, usability testing. Design is solving problems for people.', dur:'3 months'},
+{n:4, t:'Design Systems & Component Libraries', d:'Build reusable component systems. Study Material Design, Apple HIG, and major design systems.', dur:'2 months'},
+{n:5, t:'Build a Portfolio of Case Studies', d:'3–5 real projects with problem → process → solution format. Portfolio matters more than degree.', dur:'Ongoing'},
+{n:6, t:'Learn HTML/CSS Basics (Bonus)', d:'Designers who understand code are invaluable. Learn enough to communicate with developers clearly.', dur:'2 months'},
+],
+skills: {
+tech: ['Figma','Prototyping','Responsive Design','Wireframing','Design Systems'],
+core: ['User Research','Information Architecture','Visual Design','Accessibility'],
+tool: ['Adobe XD','Illustrator','Maze / UsabilityHub','Notion','Zeplin'],
+soft: ['Empathy','Communication','Critique Handling','Storytelling'],
+},
+salary: [{t:'Entry',i:' ',a:'₹3–6 LPA',y:'0–2 yrs'},{t:'Mid',i:' ',a:'₹8–16 LPA',y:'3–5 yrs'},{t:'Senior',i:' ',a:'₹18–35 LPA',y:'6+ yrs'}],
+resources: [
+{i:' ',bg:'#eef2fb',n:'Figma Official Tutorials',d:'Learn Figma from scratch for free',b:'free',u:'https://figma.com'},
+{i:' ',bg:'#eaf6f1',n:'DesignCourse (YouTube)',d:'Excellent UI/UX tutorials for beginners',b:'free',u:'https://youtube.com'},
+{i:' ',bg:'#fdf3e7',n:'Google UX Design (Coursera)',d:'7-course professional certificate',b:'paid',u:'https://coursera.org'},
+{i:' ',bg:'#faeaea',n:'Dribbble / Behance',d:'Top design inspiration & portfolio platforms',b:'free',u:'https://dribbble.com'},
+{i:' ',bg:'#f7eef8',n:'Don\'t Make Me Think',d:'Classic UX book by Steve Krug',b:'book',u:'https://amazon.in'},
+{i:' ',bg:'#eaf6f1',n:'Nielsen Norman Group',d:'World\'s best UX research & articles',b:'free',u:'https://nngroup.com'},
+]
+},
+gamedev: {
+title: 'Game Development',
+sub: 'Build worlds, characters, and experiences that entertain millions.',
+dur: '3–5 Years', sal: '₹4–8 LPA', dem: ' Growing',
+steps: [
+{n:1, t:'Learn a Game Engine', d:'Unity (C#) for mobile & indie, Unreal (C++) for AAA & VR. Start with Unity — larger community, easier entry.', dur:'4–6 months'},
+{n:2, t:'Core Programming in C# / C++', d:'OOP, game loops, physics simulation, collision. Strong programming is the foundation of game dev.', dur:'3–4 months'},
+{n:3, t:'Game Design Fundamentals', d:'Level design, player psychology, game loops, balance. Study GDC talks and popular game postmortems.', dur:'2 months'},
+{n:4, t:'Graphics & Art Basics', d:'Learn 3D modelling in Blender or 2D art in Aseprite. Or learn to collaborate effectively with artists.', dur:'3 months'},
+{n:5, t:'Build & Ship Small Games', d:'Publish on itch.io or Google Play. Finishing small projects is more valuable than planning big ones.', dur:'Ongoing'},
+{n:6, t:'Specialize & Join Studios', d:'Mobile (Nazara, Dream11 team), PC/Console (Rockstar India, Ubisoft India), or go indie.', dur:'Year 3–4'},
+],
+skills: {
+tech: ['C# / C++','Unity / Unreal Engine','Physics Simulation','Shader Programming','Mobile Platforms'],
+core: ['Game Design','Level Design','Performance Optimization','Version Control'],
+tool: ['Blender / Maya','Git / Perforce','Aseprite','Visual Studio','Unity Asset Store'],
+soft: ['Creativity','Persistence','Team Collaboration','Playtesting Mindset'],
+},
+salary: [{t:'Entry',i:' ',a:'₹3–6 LPA',y:'0–2 yrs'},{t:'Mid',i:' ',a:'₹8–15 LPA',y:'3–5 yrs'},{t:'Senior',i:' ',a:'₹18–35 LPA',y:'6+ yrs'}],
+resources: [
+{i:' ',bg:'#eef2fb',n:'Unity Learn',d:'Official Unity tutorials — beginner to advanced',b:'free',u:'https://learn.unity.com'},
+{i:' ',bg:'#eaf6f1',n:'Brackeys (YouTube)',d:'Best Unity tutorials — watch every video',b:'free',u:'https://youtube.com'},
+{i:' ',bg:'#fdf3e7',n:'Unreal Online Learning',d:'Official Unreal tutorials and courses',b:'free',u:'https://dev.epicgames.com/community'},
+{i:' ',bg:'#faeaea',n:'Game Programming Patterns',d:'Essential patterns for game developers (free online)',b:'free',u:'https://gameprogrammingpatterns.com'},
+{i:' ',bg:'#f7eef8',n:'GDC Talks (YouTube)',d:'Game Developers Conference talks — pure gold',b:'free',u:'https://youtube.com'},
+{i:' ',bg:'#eaf6f1',n:'itch.io',d:'Publish & discover indie games',b:'free',u:'https://itch.io'},
+]
+},
+marketing: {
+title: 'Digital Marketing',
+sub: 'Grow brands, reach audiences, and drive results online.',
+dur: '1–3 Years', sal: '₹3–6 LPA', dem: ' High Demand',
+steps: [
+{n:1, t:'Digital Marketing Fundamentals', d:'SEO, SEM, social media, email, content, analytics. Get the Google Digital Garage certificate first.', dur:'2–3 months'},
+{n:2, t:'Master Google & Meta Ads', d:'Google Ads (Search, Display, YouTube) and Meta Ads Manager. Run real campaigns with small budgets.', dur:'3 months'},
+{n:3, t:'SEO & Content Marketing', d:'Keyword research, on-page SEO, backlinks, blogging. Organic traffic is the most valuable long-term asset.', dur:'3 months'},
+{n:4, t:'Analytics — Google Analytics 4', d:'Track, measure, interpret. Data-driven marketers earn significantly more than those who guess.', dur:'2 months'},
+{n:5, t:'Build a Personal Brand / Niche', d:'Grow a LinkedIn, Instagram, or YouTube channel in a niche. This is your live portfolio.', dur:'Ongoing'},
+{n:6, t:'Freelance or Join an Agency', d:'Freelance on Upwork/Fiverr or join a digital marketing agency. Get 2–3 client results to show.', dur:'Year 1–2'},
+],
+skills: {
+tech: ['Google Ads','Meta Ads','SEO / SEM','Email Marketing','Marketing Automation'],
+core: ['Content Strategy','Analytics & Reporting','Funnel Optimisation','Brand Building'],
+tool: ['Google Analytics 4','Canva','Semrush / Ahrefs','Mailchimp','Meta Business Suite'],
+soft: ['Copywriting','Creativity','Empathy for Customer','Data Mindset'],
+},
+salary: [{t:'Entry',i:' ',a:'₹2–5 LPA',y:'0–2 yrs'},{t:'Mid',i:' ',a:'₹6–12 LPA',y:'3–5 yrs'},{t:'Senior',i:' ',a:'₹15–30 LPA',y:'6+ yrs'}],
+resources: [
+{i:' ',bg:'#eef2fb',n:'Google Digital Garage',d:'Free digital marketing fundamentals cert',b:'free',u:'https://grow.google'},
+{i:' ',bg:'#eaf6f1',n:'HubSpot Academy',d:'Top free marketing certifications',b:'free',u:'https://academy.hubspot.com'},
+{i:' ',bg:'#fdf3e7',n:'Semrush Blog / Academy',d:'SEO & digital marketing deep-dives',b:'free',u:'https://semrush.com/academy'},
+{i:' ',bg:'#faeaea',n:'Neil Patel (YouTube)',d:'Practical SEO and marketing strategies',b:'free',u:'https://youtube.com'},
+{i:' ',bg:'#f7eef8',n:'Meta Blueprint',d:'Official Meta / Facebook advertising training',b:'free',u:'https://www.facebook.com/business/learn'},
+{i:' ',bg:'#eaf6f1',n:'$100M Offers (Alex Hormozi)',d:'Essential for understanding marketing & sales',b:'book',u:'https://amazon.in'},
+]
+},
+finance: {
+title: 'Finance / Chartered Accountancy',
+sub: 'Master money, build financial systems, and lead businesses.',
+dur: '5–7 Years', sal: '₹6–12 LPA', dem: ' Prestigious & Stable',
+steps: [
+{n:1, t:'Commerce Stream in 11th–12th', d:'Accounts, Economics, Business Studies, Maths. Score 80%+ in boards for a strong foundation.', dur:'Class 11–12'},
+{n:2, t:'Register for CA Foundation', d:'After 12th, register with ICAI. CA Foundation covers Accounts, Law, Economics, and Maths.', dur:'8 months preparation'},
+{n:3, t:'Clear CA Intermediate', d:'Two groups of 4 papers each. Requires 8–12 months of serious daily study. Articleship starts here.', dur:'1–2 Years'},
+{n:4, t:'Complete 3-Year Articleship', d:'Work under a CA firm — real-world exposure to taxation, auditing, and finance. Non-negotiable.', dur:'3 Years'},
+{n:5, t:'CA Final Examination', d:'The toughest professional exam in India. 8 papers. Study daily, take mock tests. Pass rate ~12%.', dur:'18–24 months'},
+{n:6, t:'Specialise or Join a Big 4', d:'Big 4 (Deloitte, PwC, EY, KPMG), corporate finance, investment banking, or your own practice.', dur:'After qualification'},
+],
+skills: {
+tech: ['Financial Accounting','Taxation (Direct & Indirect)','Auditing','Cost Accounting','Tally / SAP'],
+core: ['Financial Analysis','Risk Assessment','Corporate Law','GST & Income Tax'],
+tool: ['Tally Prime','MS Excel (Advanced)','SAP FICO','QuickBooks','Power BI'],
+soft: ['Accuracy & Precision','Ethics','Communication','Time Management'],
+},
+salary: [{t:'CA Fresher',i:' ',a:'₹7–12 LPA',y:'On qualification'},{t:'Manager',i:' ',a:'₹15–28 LPA',y:'5–8 yrs'},{t:'Partner / CFO',i:' ',a:'₹40 LPA+',y:'10+ yrs'}],
+resources: [
+{i:' ',bg:'#eef2fb',n:'ICAI Official Portal',d:'Registration, syllabus, study material',b:'free',u:'https://icai.org'},
+{i:' ',bg:'#eaf6f1',n:'CA Wallah / Unacademy CA',d:'Top CA coaching videos on YouTube',b:'free',u:'https://youtube.com'},
+{i:' ',bg:'#fdf3e7',n:'ICAI Study Material',d:'Official exam-focused study material',b:'free',u:'https://icai.org'},
+{i:' ',bg:'#faeaea',n:'Investopedia',d:'Finance concepts explained clearly',b:'free',u:'https://investopedia.com'},
+{i:' ',bg:'#f7eef8',n:'CFA Institute',d:'For finance beyond CA — global credential',b:'paid',u:'https://cfainstitute.org'},
+{i:' ',bg:'#eaf6f1',n:'Economic Times / Mint',d:'Daily financial news reading habit',b:'paid',u:'https://economictimes.com'},
+]
+},
+medical: {
+title: 'Medical / Healthcare',
+sub: 'Heal people, advance science, and serve society.',
+dur: '8–12 Years', sal: '₹6–12 LPA', dem: ' Always Needed',
+steps: [
+{n:1, t:'Science Stream — PCB in 11th–12th', d:'Physics, Chemistry, Biology. Aim for 85%+ in boards. Biology and Chemistry are critical for NEET.', dur:'Class 11–12'},
+{n:2, t:'Crack NEET-UG', d:'650+ score for government MBBS. Study NCERT religiously. 10–12 hours daily for 1–2 years of prep.', dur:'1–2 Years'},
+{n:3, t:'MBBS (5.5 Years)', d:'4.5 years of academics + 1 year internship. Clinical rotations across all major departments.', dur:'5.5 Years'},
+{n:4, t:'Internship & CRRI', d:'Compulsory Rotatory Residential Internship. Work across all departments. Register with NMC.', dur:'1 Year'},
+{n:5, t:'NEET-PG / Super-speciality', d:'Choose speciality: Surgery, Medicine, Paediatrics, Psychiatry, Radiology etc. Top specialities need 580+.', dur:'Post MBBS'},
+{n:6, t:'MD/MS / Residency & Practice', d:'3 years residency training. Build expertise, research publications, or set up private practice.', dur:'3–6 Years'},
+],
+skills: {
+tech: ['Anatomy & Physiology','Pharmacology','Clinical Diagnosis','Surgical Skills','Patient Management'],
+core: ['Evidence-Based Medicine','Medical Ethics','Emergency Care','Research & Analysis'],
+tool: ['Clinical Software / HIS','ECG / Ultrasound','Medical Databases (PubMed)','Telemedicine Platforms'],
+soft: ['Empathy','Communication','Decision Under Pressure','Lifelong Learning'],
+},
+salary: [{t:'MBBS Doctor',i:' ',a:'₹6–10 LPA',y:'After internship'},{t:'Specialist MD',i:' ',a:'₹15–30 LPA',y:'After PG'},{t:'Senior Consultant',i:' ',a:'₹40–80 LPA',y:'10+ yrs exp'}],
+resources: [
+{i:' ',bg:'#eef2fb',n:'NMC Official Portal',d:'National Medical Commission — official body',b:'free',u:'https://nmc.org.in'},
+{i:' ',bg:'#eaf6f1',n:'Unacademy NEET',d:'Top NEET coaching online',b:'paid',u:'https://unacademy.com'},
+{i:' ',bg:'#fdf3e7',n:'NCERT Biology XI & XII',d:'The backbone of NEET preparation',b:'free',u:'https://ncert.nic.in'},
+{i:' ',bg:'#faeaea',n:'PubMed / NCBI',d:'World\'s largest medical research database',b:'free',u:'https://pubmed.ncbi.nlm.nih.gov'},
+{i:' ',bg:'#f7eef8',n:'Harrison\'s Principles',d:'Internal medicine Bible for MBBS students',b:'book',u:'https://amazon.in'},
+{i:' ',bg:'#eaf6f1',n:'Allen / Aakash NEET',d:'India\'s top NEET coaching institutes',b:'paid',u:'https://allen.ac.in'},
+]
+},
+govt: {
+title: 'Government Services / UPSC',
+sub: 'Serve the nation, lead communities, and build a lifetime of security.',
+dur: '4–7 Years', sal: '₹5–12 LPA', dem: ' Stable & Prestigious',
+steps: [
+{n:1, t:'Choose Your Target Exam Early', d:'UPSC (IAS/IPS/IFS), SSC CGL, Banking (IBPS/SBI PO), Railway (RRB NTPC), or State PSC.', dur:'After 12th'},
+{n:2, t:'Complete Graduation', d:'Any stream. UPSC needs a degree. SSC CGL, IBPS PO, and State PSC also need graduation.', dur:'3 Years'},
+{n:3, t:'Master the Syllabus', d:'UPSC: GS I–IV, CSAT, Optional Subject. SSC: Reasoning, Maths, English, GK. Download official syllabus first.', dur:'1–2 months'},
+{n:4, t:'Daily Study Routine', d:'6–8 hours minimum. NCERTs for foundation, then Laxmikanth for Polity, Bipan Chandra for History.', dur:'1–2 Years'},
+{n:5, t:'Newspaper + Current Affairs Daily', d:'The Hindu or Indian Express. Daily reading of national/international events is non-negotiable for UPSC.', dur:'Ongoing'},
+{n:6, t:'Mock Tests & Answer Writing', d:'Full-length mocks weekly. UPSC Mains needs exceptional answer writing. Practice every single day.', dur:'6 months before exam'},
+],
+skills: {
+tech: ['Quantitative Aptitude','Logical Reasoning','English Grammar','Computer Awareness'],
+core: ['Indian Polity & Governance','History & Geography','Economics','Current Affairs & IR'],
+tool: ['NCERT Books','Testbook App','Vision IAS Notes','Newspaper Archives'],
+soft: ['Consistency','Time Management','Note-making','Mental Stamina'],
+},
+salary: [{t:'SSC / Railway',i:' ',a:'₹4–8 LPA',y:'Grade C/D'},{t:'Banking PO',i:' ',a:'₹8–12 LPA',y:'Scale I–II'},{t:'IAS / IPS',i:' ',a:'₹14–20 LPA',y:'+ Perks & Power'}],
+resources: [
+{i:' ',bg:'#eef2fb',n:'UPSC Wallah / PW',d:'Best UPSC & SSC coaching on YouTube',b:'free',u:'https://youtube.com'},
+{i:' ',bg:'#eaf6f1',n:'The Hindu / IE',d:'Daily newspaper — must for UPSC aspirants',b:'paid',u:'https://thehindu.com'},
+{i:' ',bg:'#fdf3e7',n:'NCERT Books (Free)',d:'Foundation for all competitive exams',b:'free',u:'https://ncert.nic.in'},
+{i:' ',bg:'#faeaea',n:'Testbook',d:'Mocks, PYQs for SSC, Banking, Railways',b:'freemium',u:'https://testbook.com'},
+{i:' ',bg:'#f7eef8',n:'M. Laxmikanth — Polity',d:'The definitive Polity book for UPSC',b:'book',u:'https://amazon.in'},
+{i:' ',bg:'#eaf6f1',n:'Vision IAS Monthly',d:'Best current affairs magazine for UPSC',b:'paid',u:'https://visionias.in'},
+]
+},
+startup: {
+title: 'Startup / Entrepreneurship',
+sub: 'Build, launch, and scale products that change how people live.',
+dur: '4–7 Years', sal: 'Unlimited ', dem: ' High Risk / High Reward',
+steps: [
+{n:1, t:'Develop a Problem-Solving Mindset', d:'Look for friction in daily life. Read about businesses. Talk to people. Entrepreneurs see problems, not inconveniences.', dur:'Now — Forever'},
+{n:2, t:'Learn One High-Value Skill Deeply', d:'Coding, design, sales, or content. This becomes your startup\'s unfair advantage and keeps costs down.', dur:'1–2 Years'},
+{n:3, t:'Study Business Fundamentals', d:'Unit economics, CAC, LTV, margin, hiring, legal basics. Y Combinator Startup School is free and excellent.', dur:'3–4 months'},
+{n:4, t:'Validate Before Building', d:'Talk to 50+ potential customers. Understand the problem deeply before writing a single line of code.', dur:'1–2 months'},
+{n:5, t:'Build a Lean MVP', d:'Simplest version that proves the core idea. Launch fast, get real users, and iterate based on feedback.', dur:'2–3 months'},
+{n:6, t:'Grow, Raise, or Sustain', d:'Grow organically or raise from angels/VCs. Rocketship growth or sustainable bootstrapped profits — both win.', dur:'Ongoing'},
+],
+skills: {
+tech: ['Product Development','No-Code / Low-Code','Basic Finance','Digital Marketing','Sales Funnels'],
+core: ['Market Research','Business Model Design','Customer Discovery','Unit Economics'],
+tool: ['Notion / Airtable','Canva','Stripe / Razorpay','Mixpanel','Google Workspace'],
+soft: ['Resilience','Leadership','Communication','First-principles Thinking'],
+},
+salary: [{t:'Early Stage',i:' ',a:'₹0–5 LPA',y:'0–3 yrs'},{t:'Growth Stage',i:' ',a:'₹10–50 LPA',y:'3–6 yrs'},{t:'Exit / Scale',i:' ',a:'₹Crores+',y:'7+ yrs'}],
+resources: [
+{i:' ',bg:'#eef2fb',n:'YC Startup School',d:'Free startup education by Y Combinator',b:'free',u:'https://startupschool.org'},
+{i:' ',bg:'#eaf6f1',n:'The Lean Startup',d:'Essential book by Eric Ries',b:'book',u:'https://amazon.in'},
+{i:' ',bg:'#fdf3e7',n:'How I Built This (NPR)',d:'Podcast — real founder stories',b:'free',u:'https://npr.org'},
+{i:' ',bg:'#faeaea',n:'Paul Graham Essays',d:'Must-read essays on startups & life',b:'free',u:'https://paulgraham.com'},
+{i:' ',bg:'#f7eef8',n:'Product Hunt',d:'Launch and discover products daily',b:'free',u:'https://producthunt.com'},
+{i:' ',bg:'#eaf6f1',n:'LinkedIn / AngelList',d:'Network with founders and investors',b:'free',u:'https://linkedin.com'},
+]
+},
+};
+const levelMods = {
+'10th': { suffix: '', durAdd: '' },
+'12th': {
+ai: { sub: 'You\'re one step closer — join an AI-focused B.Tech programme', dur: '4 Years' },
+webdev: { sub: 'Start building now and be job-ready within 2–3 years', dur: '3–4 Years' },
+cloud: { sub: 'Start with Linux and certifications alongside your degree', dur: '3–4 Years' },
+},
+btech: {
+ai: { sub: 'You have the foundation — now specialize and build', dur: '1–2 Years', sal: '₹8–14 LPA', dem: ' Explosive' },
+webdev: { sub: 'Leverage your CS knowledge to become a full-stack engineer', dur: '6–12 Months', sal: '₹6–10 LPA', dem: ' Very High' },
+data: { sub: 'Fast-track into data with your technical background', dur: '6–12 Months', sal: '₹8–12 LPA', dem: ' Very High' },
+cyber: { sub: 'Your CS foundation gives you a head start', dur: '6–12 Months', sal: '₹8–12 LPA', dem: ' Very High' },
+cloud: { sub: 'Specialize in cloud and double your market value fast', dur: '6–12 Months', sal: '₹10–16 LPA', dem: ' Very High' },
+design: { sub: 'Build a product design portfolio alongside your degree', dur: '1–2 Years', sal: '₹6–12 LPA', dem: ' Growing' },
+gamedev: { sub: 'Your programming skills fast-track your game dev journey',dur: '1–2 Years', sal: '₹5–10 LPA', dem: ' Growing' },
+marketing: { sub: 'Combine tech and marketing for growth roles', dur: '1–2 Years', sal: '₹5–9 LPA', dem: ' High' },
+finance: { sub: 'Add CFA / CMA alongside your degree for finance roles', dur: '2–3 Years', sal: '₹6–10 LPA', dem: ' Stable' },
+startup: { sub: 'B.Tech + startup: the best combination for founders', dur: '2–4 Years' },
+},
+};
+const interestLabels = {
+ai:'AI / ML', webdev:'Web Development', data:'Data Science', cyber:'Cybersecurity',
+cloud:'Cloud & DevOps', design:'UI/UX Design', gamedev:'Game Development',
+marketing:'Digital Marketing', finance:'Finance / CA', medical:'Medical',
+govt:'Govt / UPSC', startup:'Startup'
+};
+const levelLabels = { '10th':'10th Grade', '12th':'12th Grade', 'btech':'B.Tech' };
+function generateRoadmap() {
+const { level, interest } = selections;
+const base = DB[interest];
+if (!base) return;
+// apply level overrides
+const mods = (levelMods[level] && levelMods[level][interest]) || {};
+const data = { ...base, ...mods };
+// breadcrumb & titles
+document.getElementById('rm-breadcrumb-text').textContent = `${levelLabels[level]} → ${interestLabels[interest]}`;
+document.getElementById('rm-title').textContent = data.title;
+document.getElementById('rm-sub').textContent = data.sub;
+// badges
+document.getElementById('rm-badge-dur').textContent = '⏱ ' + data.dur;
+document.getElementById('rm-badge-sal').textContent = ' ' + data.sal;
+document.getElementById('rm-badge-dem').textContent = data.dem;
+// stats
+document.getElementById('stat-duration').textContent = data.dur;
+document.getElementById('stat-salary').textContent = data.sal;
+document.getElementById('stat-demand').textContent = data.dem;
+// steps
+document.getElementById('steps-container').innerHTML = data.steps.map(s => `
+<div class="step-row">
+<div class="step-aside">
+<div class="step-num">${s.n}</div>
+<div class="step-line"></div>
+</div>
+<div class="step-body">
+<div class="step-inner">
+<div class="step-title">${s.t}</div>
+<div class="step-desc">${s.d}</div>
+<div class="step-meta">
+<span class="step-dur">⏱ ${s.dur}</span>
+</div>
+</div>
+</div>
+</div>
+`).join('');
+// skills
+const sc = document.getElementById('skills-container');
+sc.innerHTML = '';
+const catLabels = { tech:'Technical Skills', core:'Core Knowledge', tool:'Tools & Platforms', soft:'Soft Skills' };
+let delay = 0;
+for (const [type, tags] of Object.entries(data.skills)) {
+const div = document.createElement('div');
+div.className = 'skills-category';
+div.innerHTML = `<div class="skills-cat-label">${catLabels[type]}</div>
+<div class="skills-tags">${tags.map((t, i) => `<span class="skill-tag ${type}" style="animation-delay:${(delay + i) * 0.05}s">${t}</span>`).join('')}</div>`;
+sc.appendChild(div);
+delay += tags.length;
+}
+// salary
+document.getElementById('salary-levels').innerHTML = data.salary.map(s => `
+<div class="salary-level ${s.t.toLowerCase().replace(/[\s\/\+].*/,'')}">
+<div class="sal-icon">${s.i}</div>
+<div class="sal-tier">${s.t}</div>
+<div class="sal-amount">${s.a}</div>
+<div class="sal-yoe">${s.y}</div>
+</div>
+`).join('');
+// resources
+document.getElementById('resources-grid').innerHTML = data.resources.map((r,i) => `
+<a class="resource-card" href="${r.u}" target="_blank" rel="noopener" style="animation-delay:${i*0.06}s">
+<div class="res-icon" style="background:${r.bg}">${r.i}</div>
+<div class="res-info">
+<h4>${r.n}</h4>
+<p>${r.d}</p>
+<span class="res-badge ${r.b}">${r.b.charAt(0).toUpperCase()+r.b.slice(1)}</span>
+</div>
+</a>
+`).join('');
+// show
+const out = document.getElementById('roadmap-output');
+out.style.display = 'block';
+out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function scrollBack() {
+document.getElementById('roadmap-output').style.display = 'none';
+document.querySelector('.selector-section').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
